@@ -11,10 +11,15 @@ nette:
 	php-fpm -F -O -p . -y ./nette-php-fpm.conf &
 	nginx -c $(DIR)/nette-nginx.conf
 
+slim:
+	cd slim && ./composer.phar install
+	php-fpm -F -O -p . -y ./slim-php-fpm.conf &
+	nginx -c $(DIR)/slim-nginx.conf
+
 flask:
 	cd flask && python -m venv venv
 	cd flask && ./venv/bin/pip install -r requirements.txt
 	cd flask && uwsgi --ini ../flask-uwsgi.ini -H ./venv -s ../uwsgi.sock &
 	nginx -c $(DIR)/flask-nginx.conf
 
-.PHONY: nette flask
+.PHONY: nette slim flask
