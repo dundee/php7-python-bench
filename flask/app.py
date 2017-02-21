@@ -1,8 +1,17 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 app = Flask(__name__)
+
 
 @app.route('/')
 def hello_world():
-    return render_template('hello.html')
+    n = int(request.args.get('n', 0))
+    return render_template('hello.html', result=fib(n))
+
+
+def fib(n):
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
 
 application = app
