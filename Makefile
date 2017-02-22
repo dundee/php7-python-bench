@@ -18,7 +18,7 @@ slim:
 
 flask:
 	cd flask && python -m venv venv
-	cd flask && rm *.so
+	cd flask && rm -f *.so
 	cd flask && ./venv/bin/pip install -r requirements.txt
 	cd flask && uwsgi --ini ../flask-uwsgi.ini -H ./venv -s ../uwsgi.sock &
 	nginx -c $(DIR)/flask-nginx.conf
