@@ -22,10 +22,12 @@ $app->get('/', function (Request $request, Response $response) {
 });
 
 function fib($n) {
-	if ($n < 2) {
-		return $n;
-	}
-	return fib($n - 1) + fib($n - 2);
+    [$a, $b] = [0, 1];
+    for ($i=0; $i < $n; $i++) {
+        [$a, $b] = [$b, $a + $b];
+    }
+    return $a;
+    
 }
 
 $app->run();
