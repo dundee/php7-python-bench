@@ -1,7 +1,7 @@
 SHELL = /usr/bin/bash
 COUNT=100
 
-DIR=~/workspace/php7-python-bench
+DIR=~/work/php7-python-bench
 
 test:
 	@for i in {1..30}; do bash -c "ab -c 10 -n $(COUNT) http://127.0.0.1:9000/?n=$$i 2>/dev/null | grep 'Requests per second' | tr -s ' ' | cut -d' ' -f4"; done
